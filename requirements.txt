@@ -1,0 +1,78 @@
+# FastAPI
+fastapi
+uvicorn[standard]
+python-multipart
+
+# LangChain
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+
+# LangGraph
+langgraph
+
+# Groq
+groq
+langchain-groq
+
+# Embeddings
+sentence-transformers
+
+# Vector Database
+chromadb
+langchain-chroma
+
+# PDF Processing
+pypdf
+pdfplumber
+
+# PPT Processing
+python-pptx
+unstructured
+
+# YouTube Loader
+youtube-transcript-api
+
+# Database
+sqlalchemy
+pymysql
+
+# Environment Variables
+python-dotenv
+pydantic-settings
+
+# Validation
+pydantic
+email-validator
+
+# JWT Authentication
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1
+
+# Token Counting
+tiktoken
+
+# HTTP Requests
+requests
+httpx
+aiofiles
+
+# Data Processing
+pandas
+numpy
+
+# Testing
+pytest
+
+# Retrieval
+rank-bm25
+
+# Logging
+loguru
+
+# OCR (Optional)
+Pillow
+pytesseract
+streamlit
