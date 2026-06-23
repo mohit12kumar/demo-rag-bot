@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional
 
 from app.graph.study_graph import run_study_graph
 from app.services.groq_service import GroqService

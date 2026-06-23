@@ -1,4 +1,3 @@
-import re
 from app.graph.state import StudyState
 from app.rag.retriever import retrieve_documents
 from app.database.mysql import SessionLocal

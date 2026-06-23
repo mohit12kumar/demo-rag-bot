@@ -14,48 +14,9 @@ st.set_page_config(
     layout="wide"
 )
 
-# Inject custom CSS for premium styling
-st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
-    
-    html, body, [class*="css"] {
-        font-family: 'Outfit', sans-serif;
-    }
-    
-    .citation-badge {
-        display: inline-block;
-        background-color: rgba(9, 132, 227, 0.1);
-        border: 1px solid rgba(9, 132, 227, 0.25);
-        color: #74b9ff;
-        padding: 0.3rem 0.7rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        margin-right: 0.5rem;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-    
-    .citation-badge:hover {
-        background-color: rgba(9, 132, 227, 0.2);
-        border-color: rgba(9, 132, 227, 0.4);
-    }
-    
-    .stProgress .st-bo {
-        background-color: #2ecc71;
-    }
-    
-    .flashcard-card {
-        padding: 1.5rem;
-        background: linear-gradient(135deg, #1e272e 0%, #2f3640 100%);
-        border: 1px solid #485460;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-        margin-bottom: 1rem;
-    }
-</style>
-""", unsafe_allow_html=True)
+# Inject custom CSS for premium styling (Now managed natively via .streamlit/config.toml)
+# Note: Fonts and background styling are defined in .streamlit/config.toml
+
 
 # ==========================================
 # BACKEND CONNECTION CHECK
@@ -322,12 +283,12 @@ with tab_chat:
                         citations = data.get("citations", [])
                         if citations:
                             st.markdown("#### 🔗 Sources Cited")
-                            badges = ""
+                            badges_list = []
                             for cit in citations:
                                 doc_name = cit.get("document", "Source")
                                 page_num = cit.get("page", 1)
-                                badges += f'<span class="citation-badge">📄 {doc_name} (Page/Slide {page_num})</span>'
-                            st.markdown(badges, unsafe_allow_html=True)
+                                badges_list.append(f"📄 `{doc_name} (Page/Slide {page_num})`")
+                            st.markdown(" ".join(badges_list))
                     else:
                         st.error("Failed to retrieve an answer from the backend.")
                 except Exception as e:
@@ -585,16 +546,11 @@ with tab_flashcard:
     if st.session_state.flashcards:
         st.markdown(f"### 🧠 Active Deck: **{fc_topic}**")
         for idx, card in enumerate(st.session_state.flashcards):
-            with st.container():
-                st.markdown(f"""
-                <div class="flashcard-card">
-                    <h4>📌 Card {idx+1}</h4>
-                    <p style="font-size:1.1rem; font-weight:500;">{card.get('question')}</p>
-                </div>
-                """, unsafe_allow_html=True)
+            with st.container(border=True):
+                st.markdown(f"#### 📌 Card {idx+1}")
+                st.markdown(f"**Question:** {card.get('question')}")
                 with st.expander("👁️ Show Answer"):
                     st.info(card.get("answer"))
-                st.markdown("<br>", unsafe_allow_html=True)
 
 
 # ==========================================

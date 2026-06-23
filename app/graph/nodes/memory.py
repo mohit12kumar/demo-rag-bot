@@ -3,7 +3,7 @@ from app.graph.state import StudyState
 
 def memory_node(state: StudyState):
 
-    user_id = state["user_id"]
+    _user_id = state["user_id"]
 
     # TODO:
     # Fetch from MySQL

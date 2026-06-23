@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
-from typing import Optional
 
 from app.graph.study_graph import run_study_graph
 from app.auth.dependencies import get_current_user

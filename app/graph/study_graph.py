@@ -8,6 +8,8 @@ from app.graph.nodes.summarize import summarize_node
 from app.graph.nodes.flashcard import flashcard_node
 from app.graph.nodes.quiz import quiz_node
 from app.graph.nodes.revision import revision_node
+from app.services.groq_service import GroqService
+
 
 
 # =====================================
@@ -40,7 +42,6 @@ def router_node(state: StudyState):
     return state
 
 
-from app.services.groq_service import GroqService
 
 # =====================================
 # QA Node
